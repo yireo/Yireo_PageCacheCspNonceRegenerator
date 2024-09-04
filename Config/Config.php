@@ -10,8 +10,8 @@ use Magento\PageCache\Model\Config as PageCacheConfig;
 class Config
 {
     public function __construct(
-        private StateInterface $cacheState,
-        private ScopeConfigInterface $scopeConfig
+        private readonly StateInterface $cacheState,
+        private readonly ScopeConfigInterface $scopeConfig
     ) {
     }
 
@@ -21,7 +21,7 @@ class Config
             return false;
         }
 
-        if ((int)$this->scopeConfig->getValue(PageCacheConfig::XML_PAGECACHE_TYPE) !== PageCacheConfig::BUILT_IN) {
+        if (PageCacheConfig::BUILT_IN !== (int)$this->scopeConfig->getValue(PageCacheConfig::XML_PAGECACHE_TYPE)) {
             return false;
         }
 
