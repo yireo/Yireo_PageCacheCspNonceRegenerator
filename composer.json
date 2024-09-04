@@ -1,12 +1,13 @@
 {
   "name": "yireo/magento2-page-cache-csp-nonce-regenerator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Magento module to regenerate CSP nonces when built-in Page Cache is enabled",
   "type": "magento2-module",
   "require": {
     "magento/framework": "^103.0",
     "magento/module-csp": "^100.0",
-    "magento/module-page-cache": "^100.0"
+    "magento/module-page-cache": "^100.0",
+    "php": "^8.1"
   },
   "license": [
     "OSL-3.0"
