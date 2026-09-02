@@ -1,0 +1,8 @@
+{
+    "module_name": "Yireo_PageCacheCspNonceRegenerator",
+    "composer_name": "yireo/magento2-page-cache-csp-nonce-regenerator",
+    "sequence": [
+        "Magento_Csp",
+        "Magento_PageCache"
+    ]
+}
