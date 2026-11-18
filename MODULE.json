@@ -3,7 +3,8 @@
     "composer_name": "yireo/magento2-page-cache-csp-nonce-regenerator",
     "sequence": [
         "Magento_Csp",
-        "Magento_PageCache"
+        "Magento_PageCache",
+        "Magento_Store"
     ],
     "phpcs_severity": "6",
     "phpstan_level": "1"
