@@ -4,6 +4,7 @@
         <sequence>
             <module name="Magento_Csp"/>
             <module name="Magento_PageCache"/>
+            <module name="Magento_Store"/>
         </sequence>
     </module>
 </config>
