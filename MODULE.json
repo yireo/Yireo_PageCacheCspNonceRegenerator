@@ -4,5 +4,7 @@
     "sequence": [
         "Magento_Csp",
         "Magento_PageCache"
-    ]
+    ],
+    "phpcs_severity": "6",
+    "phpstan_level": "1"
 }
