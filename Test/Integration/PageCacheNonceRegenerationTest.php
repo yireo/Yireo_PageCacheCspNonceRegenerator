@@ -8,7 +8,7 @@ use Magento\Framework\App\PageCache\Kernel;
 use Magento\Framework\App\Response\Http as HttpResponse;
 use Magento\Framework\Event\ConfigInterface as EventConfig;
 use Magento\Framework\Event\ManagerInterface as EventManager;
-use Magento\Framework\Interception\PluginListInterface;
+use Magento\Framework\Interception\PluginList\PluginList;
 use Magento\Framework\Module\ModuleList;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\ObjectManager;
@@ -31,7 +31,7 @@ class PageCacheNonceRegenerationTest extends TestCase
 
     public function testKernelPluginIsRegistered(): void
     {
-        $pluginInfo = $this->getObjectManager()->get(PluginListInterface::class)->get(Kernel::class, []);
+        $pluginInfo = $this->getObjectManager()->get(PluginList::class)->get(Kernel::class, []);
         $pluginName = 'Yireo_PageCacheCspNonceRegenerator::trackCachedNonce';
         $this->assertArrayHasKey($pluginName, $pluginInfo);
         $this->assertSame(PageCacheKernelPlugin::class, $pluginInfo[$pluginName]['instance']);
