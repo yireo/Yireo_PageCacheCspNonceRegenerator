@@ -22,6 +22,17 @@ composer require yireo/magento2-page-cache-csp-nonce-regenerator
 bin/magento module:enable Yireo_PageCacheCspNonceRegenerator
 ```
 
+After installing or upgrading, flush the Full Page Cache (`bin/magento cache:flush full_page`). Pages that were cached before that don't contain the information this module needs, so their nonces are not regenerated.
+
+### How it works
+When the built-in Page Cache stores a page, this module remembers the nonce that Magento generated for that page in an internal response header (`X-Yireo-Csp-Cached-Nonce`), which is saved with the cached page. When that cached page is served (a cache hit), only that exact nonce is replaced with a fresh one, both in the HTML and in the `script-src` directive of the CSP header. The internal header is always removed before the response is sent.
+
+Any other `nonce="..."` attribute in the HTML (for instance markup injected through CMS content) is left alone, so that it doesn't get a valid nonce. Cache misses, uncacheable pages and non-HTML responses are not touched.
+
+### Security notes
+- With Varnish (or any other external full page cache), cached pages keep the same nonce for as long as they're cached, so an attacker who has seen one of those pages knows the nonce. This module doesn't fix that.
+- On a cache hit, Magento can't use page-specific CSP mode settings, so the default storefront CSP mode (report-only or restrict) is used.
+
 
 ## Current status
 
