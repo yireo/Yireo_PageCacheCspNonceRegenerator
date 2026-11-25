@@ -1,0 +1,33 @@
+schema_version: "1.6.0"
+id: YIREO-PAGE-CACHE-CSP-NONCE-REGENERATOR-2026-001
+published: "2026-11-25T00:00:00Z"
+modified: "2026-11-25T00:00:00Z"
+aliases: []
+summary: Content Security Policy bypass by granting a valid nonce to injected markup on page cache hits
+details: >
+  When a page was served from the built-in Magento page cache, RefreshNoncesObserver replaced every
+  nonce="..." attribute in the response body with the freshly generated CSP nonce. HTML injected into
+  the page, carrying an arbitrary nonce attribute, therefore received a valid nonce, so that injected
+  scripts were executed even though the Content Security Policy would otherwise have blocked them.
+  Version 0.0.3 stores the nonce of the rendered page with the cached page and only replaces that exact
+  nonce, only for HTML responses served from the built-in page cache. The rewrite of the CSP header no
+  longer produces empty headers or duplicate nonces, and failures leave the response untouched.
+  Exploitation requires an existing HTML injection vulnerability in a page served from the built-in page cache.
+severity:
+  - type: CVSS_V3
+    score: "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N"
+affected:
+  - package:
+      ecosystem: Packagist
+      name: yireo/magento2-page-cache-csp-nonce-regenerator
+    ranges:
+      - type: ECOSYSTEM
+        events:
+          - introduced: "0.0.1"
+          - fixed: "0.0.3"
+references:
+  - type: PACKAGE
+    url: https://github.com/yireo/Yireo_PageCacheCspNonceRegenerator
+database_specific:
+  cwe_ids:
+    - CWE-693
